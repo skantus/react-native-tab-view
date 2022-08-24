@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  Animated,
   Easing,
   StyleSheet,
   I18nManager,
@@ -8,6 +7,7 @@ import {
   ViewStyle,
   Platform,
 } from 'react-native';
+import Animated from 'react-native-reanimated';
 
 import type { Route, SceneRendererProps, NavigationState } from './types';
 
@@ -69,7 +69,7 @@ export default class TabBarIndicator<T extends Route> extends React.Component<
       return [...acc, acc[i - 1] + getTabWidth(i - 1)];
     }, []);
 
-    const translateX = position.interpolate({
+    const translateX = Animated.interpolateNode(position, {
       inputRange,
       outputRange,
       extrapolate: 'clamp',

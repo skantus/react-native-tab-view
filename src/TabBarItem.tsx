@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  Animated,
   StyleSheet,
   View,
   StyleProp,
@@ -10,9 +9,12 @@ import {
 } from 'react-native';
 import PlatformPressable from './PlatformPressable';
 import type { Scene, Route, NavigationState } from './types';
+import Animated from 'react-native-reanimated';
+
+// https://github.com/satya164/react-native-tab-view/issues/1007
 
 export type Props<T extends Route> = {
-  position: Animated.AnimatedInterpolation;
+  position: Animated.AnimatedTransform;
   route: T;
   navigationState: NavigationState<T>;
   activeColor?: string;
@@ -48,14 +50,14 @@ export default class TabBarItem<T extends Route> extends React.Component<
   Props<T>
 > {
   private getActiveOpacity = (
-    position: Animated.AnimatedInterpolation,
+    position: Animated.AnimatedTransform,
     routes: Route[],
     tabIndex: number
   ) => {
     if (routes.length > 1) {
       const inputRange = routes.map((_, i) => i);
 
-      return position.interpolate({
+      return Animated.interpolateNode(position, {
         inputRange,
         outputRange: inputRange.map((i) => (i === tabIndex ? 1 : 0)),
       });
@@ -65,14 +67,14 @@ export default class TabBarItem<T extends Route> extends React.Component<
   };
 
   private getInactiveOpacity = (
-    position: Animated.AnimatedInterpolation,
+    position: Animated.AnimatedTransform,
     routes: Route[],
     tabIndex: number
   ) => {
     if (routes.length > 1) {
       const inputRange = routes.map((_: Route, i: number) => i);
 
-      return position.interpolate({
+      return Animated.interpolateNode(position, {
         inputRange,
         outputRange: inputRange.map((i: number) => (i === tabIndex ? 0 : 1)),
       });
