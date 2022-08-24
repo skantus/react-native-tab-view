@@ -103,7 +103,11 @@ export default class CustomTabBarExample extends React.Component<{}, State> {
             key={route.key}
             onPress={() => props.jumpTo(route.key)}
           >
-            {this.renderItem(props)({ route, index })}
+            {
+              // TODO: need to be updated.
+              // @ts-ignore-next-line
+              this.renderItem(props)({ route, index })
+            }
           </TouchableWithoutFeedback>
         );
       })}

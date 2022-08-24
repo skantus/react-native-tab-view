@@ -55,16 +55,22 @@ const Scene = ({ route, position, layout, index, length }: Props) => {
       }
     });
 
+    // TODO: need to be updated.
+    // @ts-ignore-next-line
     const translateX = position.interpolate({
       inputRange,
       outputRange: translateOutputRange,
       extrapolate: 'clamp',
     });
+    // TODO: need to be updated.
+    // @ts-ignore-next-line
     const scale = position.interpolate({
       inputRange,
       outputRange: scaleOutputRange,
       extrapolate: 'clamp',
     });
+    // TODO: need to be updated.
+    // @ts-ignore-next-line
     const opacity = position.interpolate({
       inputRange,
       outputRange: opacityOutputRange,

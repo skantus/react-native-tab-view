@@ -1,4 +1,4 @@
-import type { Animated } from 'react-native';
+import type Animated from 'react-native-reanimated';
 import type { PagerViewProps } from 'react-native-pager-view';
 
 export type Route = {
@@ -33,7 +33,7 @@ export type Listener = (value: number) => void;
 
 export type SceneRendererProps = {
   layout: Layout;
-  position: Animated.AnimatedInterpolation;
+  position: Animated.Adaptable<number>;
   jumpTo: (key: string) => void;
 };
 

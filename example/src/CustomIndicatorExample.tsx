@@ -59,11 +59,15 @@ export default class CustomIndicatorExample extends React.Component<{}, State> {
       0, 0.48, 0.49, 0.51, 0.52, 1, 1.48, 1.49, 1.51, 1.52, 2,
     ];
 
+    // TODO: need to be updated.
+    // @ts-ignore-next-line
     const scale = position.interpolate({
       inputRange,
       outputRange: inputRange.map((x) => (Math.trunc(x) === x ? 2 : 0.1)),
     });
 
+    // TODO: need to be updated.
+    // @ts-ignore-next-line
     const opacity = position.interpolate({
       inputRange,
       outputRange: inputRange.map((x) => {
@@ -72,6 +76,8 @@ export default class CustomIndicatorExample extends React.Component<{}, State> {
       }),
     });
 
+    // TODO: need to be updated.
+    // @ts-ignore-next-line
     const translateX = position.interpolate({
       inputRange: inputRange,
       outputRange: inputRange.map((x) => {

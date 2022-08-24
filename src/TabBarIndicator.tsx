@@ -1,13 +1,12 @@
 import * as React from 'react';
 import {
-  Easing,
   StyleSheet,
   I18nManager,
   StyleProp,
   ViewStyle,
   Platform,
 } from 'react-native';
-import Animated from 'react-native-reanimated';
+import Animated, { Extrapolate, EasingNode } from 'react-native-reanimated';
 
 import type { Route, SceneRendererProps, NavigationState } from './types';
 
@@ -46,8 +45,7 @@ export default class TabBarIndicator<T extends Route> extends React.Component<
       Animated.timing(this.opacity, {
         toValue: 1,
         duration: 150,
-        easing: Easing.in(Easing.linear),
-        useNativeDriver: true,
+        easing: EasingNode.in(EasingNode.linear),
       }).start();
     }
   };
@@ -57,7 +55,7 @@ export default class TabBarIndicator<T extends Route> extends React.Component<
   private opacity = new Animated.Value(this.props.width === 'auto' ? 0 : 1);
 
   private getTranslateX = (
-    position: Animated.AnimatedInterpolation,
+    position: Animated.Adaptable<number>,
     routes: Route[],
     getTabWidth: GetTabWidth
   ) => {
@@ -72,7 +70,7 @@ export default class TabBarIndicator<T extends Route> extends React.Component<
     const translateX = Animated.interpolateNode(position, {
       inputRange,
       outputRange,
-      extrapolate: 'clamp',
+      extrapolate: Extrapolate.CLAMP,
     });
 
     return Animated.multiply(translateX, I18nManager.isRTL ? -1 : 1);
@@ -102,10 +100,10 @@ export default class TabBarIndicator<T extends Route> extends React.Component<
         {
           scaleX:
             routes.length > 1
-              ? position.interpolate({
+              ? Animated.interpolateNode(position, {
                   inputRange,
                   outputRange,
-                  extrapolate: 'clamp',
+                  extrapolate: Extrapolate.CLAMP,
                 })
               : outputRange[0],
         },

@@ -14,7 +14,7 @@ import Animated from 'react-native-reanimated';
 // https://github.com/satya164/react-native-tab-view/issues/1007
 
 export type Props<T extends Route> = {
-  position: Animated.AnimatedTransform;
+  position: Animated.Adaptable<number>;
   route: T;
   navigationState: NavigationState<T>;
   activeColor?: string;
@@ -50,7 +50,7 @@ export default class TabBarItem<T extends Route> extends React.Component<
   Props<T>
 > {
   private getActiveOpacity = (
-    position: Animated.AnimatedTransform,
+    position: Animated.Adaptable<number>,
     routes: Route[],
     tabIndex: number
   ) => {
@@ -67,7 +67,7 @@ export default class TabBarItem<T extends Route> extends React.Component<
   };
 
   private getInactiveOpacity = (
-    position: Animated.AnimatedTransform,
+    position: Animated.Adaptable<number>,
     routes: Route[],
     tabIndex: number
   ) => {

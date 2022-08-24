@@ -97,13 +97,12 @@ export default function TabView<T extends Route>({
           return (
             <React.Fragment>
               {tabBarPosition === 'top' &&
-                renderTabBar({
-                  ...sceneRendererProps,
-                  navigationState,
-                })}
+                // FIXME: types.
+                renderTabBar({ ...sceneRendererProps, navigationState })}
               {render(
                 navigationState.routes.map((route, i) => {
                   return (
+                    // FIXME: types.
                     <SceneView
                       {...sceneRendererProps}
                       addEnterListener={addEnterListener}
@@ -117,20 +116,15 @@ export default function TabView<T extends Route>({
                       {({ loading }) =>
                         loading
                           ? renderLazyPlaceholder({ route })
-                          : renderScene({
-                              ...sceneRendererProps,
-                              route,
-                            })
+                          : renderScene({ ...sceneRendererProps, route })
                       }
                     </SceneView>
                   );
                 })
               )}
               {tabBarPosition === 'bottom' &&
-                renderTabBar({
-                  ...sceneRendererProps,
-                  navigationState,
-                })}
+                // FIXME: types.
+                renderTabBar({ ...sceneRendererProps, navigationState })}
             </React.Fragment>
           );
         }}
