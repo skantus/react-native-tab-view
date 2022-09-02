@@ -11,7 +11,11 @@ import PlatformPressable from './PlatformPressable';
 import type { Scene, Route, NavigationState } from './types';
 import Animated from 'react-native-reanimated';
 
-// https://github.com/satya164/react-native-tab-view/issues/1007
+/*
+ * How to use position
+ * https://github.com/satya164/react-native-tab-view/issues/1007
+ */
+//
 
 export type Props<T extends Route> = {
   position: Animated.Adaptable<number>;
